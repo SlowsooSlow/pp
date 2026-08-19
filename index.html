@@ -1,0 +1,488 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>윤수진 — Product Manager</title>
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+
+    :root {
+      --blue: #3182F6;
+      --blue-light: #EBF3FE;
+      --blue-dark: #1B64DA;
+      --blue-highlight: #C2DCFD;
+      --ink: #191F28;
+      --muted: #8B95A1;
+      --bg: #F2F4F6;
+      --card: #FFFFFF;
+    }
+
+    body {
+      background: var(--bg);
+      color: var(--ink);
+      font-family: -apple-system, BlinkMacSystemFont, 'Helvetica Neue', 'Apple SD Gothic Neo', sans-serif;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    /* ── HERO ── */
+    .hero {
+      padding: 72px 48px 56px;
+      max-width: 900px;
+      margin: 0 auto;
+    }
+
+    .hero-label {
+      display: inline-block;
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: var(--blue);
+      margin-bottom: 20px;
+      background: var(--blue-light);
+      padding: 5px 12px;
+      border-radius: 20px;
+    }
+
+    .hero-name {
+      font-size: clamp(36px, 7vw, 64px);
+      font-weight: 800;
+      letter-spacing: -2px;
+      line-height: 1;
+      margin-bottom: 4px;
+      color: var(--ink);
+    }
+
+    .hero-name-ko {
+      font-size: clamp(36px, 7vw, 64px);
+      font-weight: 800;
+      letter-spacing: -2px;
+      line-height: 1;
+      color: transparent;
+      -webkit-text-stroke: 2px var(--ink);
+      margin-bottom: 28px;
+    }
+
+    .hero-name-en-sub {
+      font-size: 16px;
+      font-weight: 500;
+      color: var(--muted);
+      letter-spacing: 0.02em;
+      margin-bottom: 28px;
+    }
+
+    .hero-bio {
+      font-size: 17px;
+      line-height: 1.8;
+      color: #4E5968;
+      max-width: 540px;
+      margin-bottom: 36px;
+    }
+
+    .hero-bio em {
+      font-style: normal;
+      background: linear-gradient(transparent 55%, var(--blue-highlight) 55%);
+    }
+
+    .contacts {
+      display: flex;
+      gap: 10px;
+      flex-wrap: wrap;
+    }
+
+    .contact-chip {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      font-size: 13px;
+      font-weight: 500;
+      color: var(--ink);
+      text-decoration: none;
+      background: var(--card);
+      border: 1.5px solid #E5E8EB;
+      padding: 8px 16px;
+      border-radius: 100px;
+      transition: all 0.2s;
+    }
+
+    .contact-chip:hover {
+      border-color: var(--blue);
+      color: var(--blue);
+      background: var(--blue-light);
+    }
+
+    /* ── STATS ROW ── */
+    .stats {
+      max-width: 900px;
+      margin: 0 auto;
+      padding: 0 48px 56px;
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 12px;
+    }
+
+    .stat-card {
+      background: var(--card);
+      border-radius: 16px;
+      padding: 24px;
+      transition: transform 0.2s;
+    }
+
+    .stat-card:hover { transform: translateY(-3px); }
+
+    .stat-num {
+      font-size: 36px;
+      font-weight: 800;
+      letter-spacing: -1.5px;
+      line-height: 1;
+      margin-bottom: 6px;
+      color: var(--blue);
+    }
+
+    .stat-desc {
+      font-size: 13px;
+      color: var(--muted);
+      line-height: 1.4;
+    }
+
+    /* ── SECTION HEADER ── */
+    .section-wrap {
+      max-width: 900px;
+      margin: 0 auto;
+      padding: 0 48px 80px;
+    }
+
+    .section-header {
+      display: flex;
+      align-items: center;
+      gap: 16px;
+      margin-bottom: 24px;
+    }
+
+    .section-title {
+      font-size: 12px;
+      font-weight: 700;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--muted);
+    }
+
+    .section-line {
+      flex: 1;
+      height: 1px;
+      background: #E5E8EB;
+    }
+
+    /* ── EXPERIENCE CARDS ── */
+    .exp-grid {
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+    }
+
+    .exp-card {
+      background: var(--card);
+      border-radius: 20px;
+      padding: 28px 32px;
+      transition: transform 0.2s;
+    }
+
+    .exp-card:hover { transform: translateY(-2px); }
+
+    .exp-top {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+      margin-bottom: 14px;
+      flex-wrap: wrap;
+      gap: 8px;
+    }
+
+    .exp-company {
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--muted);
+      margin-bottom: 4px;
+    }
+
+    .exp-role {
+      font-size: 19px;
+      font-weight: 700;
+      letter-spacing: -0.3px;
+      color: var(--ink);
+    }
+
+    .exp-period {
+      font-size: 12px;
+      color: var(--muted);
+      background: #F2F4F6;
+      padding: 4px 12px;
+      border-radius: 100px;
+      white-space: nowrap;
+      align-self: flex-start;
+    }
+
+    .exp-period.now {
+      background: var(--blue-light);
+      color: var(--blue);
+      font-weight: 600;
+    }
+
+    .exp-question {
+      font-size: 13px;
+      color: var(--blue);
+      font-style: italic;
+      margin-bottom: 16px;
+      padding-left: 12px;
+      border-left: 2px solid var(--blue);
+      line-height: 1.6;
+    }
+
+    .exp-bullets {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 4px;
+      margin-bottom: 16px;
+    }
+
+    .exp-bullets li {
+      font-size: 14px;
+      color: #4E5968;
+      line-height: 1.65;
+      display: flex;
+      gap: 10px;
+      align-items: flex-start;
+    }
+
+
+    .bullet-dot {
+      width: 18px;
+      height: 18px;
+      background: var(--blue-light);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 8px;
+      color: var(--blue);
+      flex-shrink: 0;
+      margin-top: 2px;
+    }
+
+    details[open] .bullet-dot {
+      background: var(--blue);
+      color: white;
+    }
+
+    .exp-tags {
+      display: flex;
+      gap: 6px;
+      flex-wrap: wrap;
+    }
+
+    .tag {
+      font-size: 11px;
+      font-weight: 600;
+      padding: 3px 10px;
+      border-radius: 100px;
+      background: #F2F4F6;
+      color: var(--muted);
+    }
+
+    /* ── FOOTER ── */
+    .footer {
+      max-width: 900px;
+      margin: 0 auto;
+      padding: 0 48px 80px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .footer-text { font-size: 12px; color: #C4C9CF; }
+    .footer-mark { font-size: 22px; font-weight: 800; letter-spacing: -1px; color: #E5E8EB; }
+
+    @media (max-width: 600px) {
+      .hero { padding: 48px 20px 40px; }
+      .stats { padding: 0 20px 40px; grid-template-columns: 1fr 1fr; }
+      .stats .stat-card:last-child { grid-column: span 2; }
+      .section-wrap { padding: 0 20px 60px; }
+      .footer { padding: 0 20px 60px; }
+      .exp-card { padding: 22px 20px; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- HERO -->
+  <section class="hero">
+    <div class="hero-label">+ Product Manager</div>
+    <div class="hero-name">Youn Soojin</div>
+    <div class="hero-name-ko">윤수진</div>
+    <p class="hero-bio">
+      네이버, 현대자동차, LINE에서 커뮤니티, 금융, 커머스, 모빌리티까지 다양한 분야의 서비스를 경험해왔습니다.<br>
+      <em>어떻게 해야 사용자가 많이 사용할 것인가</em>라는 고민을 바탕으로, 서비스 출시부터 마케팅, 운영까지 서비스의 다양한 부분들을 경험하고 실력을 쌓아왔습니다.
+    </p>
+    <nav class="contacts">
+      <a class="contact-chip" href="mailto:slowfolksong@gmail.com">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="M2 7l10 7 10-7"/></svg>
+        slowfolksong@gmail.com
+      </a>
+      <a class="contact-chip" href="https://www.linkedin.com/in/soojin-yoon-21448b147/" target="_blank">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M16 8a6 6 0 016 6v7h-4v-7a2 2 0 00-2-2 2 2 0 00-2 2v7h-4v-7a6 6 0 016-6zM2 9h4v12H2z"/><circle cx="4" cy="4" r="2"/></svg>
+        LinkedIn
+      </a>
+    </nav>
+  </section>
+
+  <!-- STATS -->
+  <div class="stats">
+    <div class="stat-card">
+      <div class="stat-num">12<span style="font-size:20px">년+</span></div>
+      <div class="stat-desc">IT 서비스 기획 & 프로덕트 매니지먼트 경력</div>
+    </div>
+    <div class="stat-card">
+      <div class="stat-num">4<span style="font-size:20px">회</span></div>
+      <div class="stat-desc">서비스 오픈 경험 — 웨일브라우저, 커머스솔루션마켓, 커머스API센터, 셔클 세종지역</div>
+    </div>
+    <div class="stat-card">
+      <div class="stat-num">TOP<span style="font-size:20px">2</span></div>
+      <div class="stat-desc">2025 네이버 전사 AI공모전 Open Idea Challenge</div>
+    </div>
+  </div>
+
+  <!-- EXPERIENCE -->
+  <section class="section-wrap">
+    <div class="section-header">
+      <span class="section-title">Experience</span>
+      <div class="section-line"></div>
+    </div>
+
+    <div class="exp-grid">
+
+      <!-- NAVER (현재) -->
+      <div class="exp-card">
+        <div class="exp-top">
+          <div>
+            <div class="exp-company">NAVER</div>
+            <div class="exp-role">네이버 쇼핑</div>
+          </div>
+          <div class="exp-period now">2021.10 — 현재 ●</div>
+        </div>
+        <div class="exp-question">"판매자의 매출을 상승시키기 위해서는 어떤 기능이 필요할까?"</div>
+        <ul class="exp-bullets">
+          <li><span class="bullet-dot">+</span>네이버 커머스솔루션 마켓 오픈 — 메인 기획 실무 담당자로 전체 스펙·런칭 주도</li>
+          <li><span class="bullet-dot">+</span>커머스API센터 오픈 3개월 내 마켓 내 솔루션 수 2배 이상 성장</li>
+          <li><span class="bullet-dot">+</span>스마트스토어센터앱 사용율 <strong>30% → 80%</strong>로 끌어올림</li>
+          <li><span class="bullet-dot">+</span>전사 AI공모전 Open Idea Challenge TOP3(2023), <strong>TOP2(2025)</strong></li>
+        </ul>
+        <div class="exp-tags">
+          <span class="tag">전자상거래</span>
+          <span class="tag">고객관리</span>
+          <span class="tag">API</span>
+        </div>
+      </div>
+
+      <!-- Hyundai (현재) -->
+      <div class="exp-card">
+        <div class="exp-top">
+          <div>
+            <div class="exp-company">Hyundai Motor Company</div>
+            <div class="exp-role">셔클</div>
+          </div>
+          <div class="exp-period">2020.05 — 2021.09</div>
+        </div>
+        <div class="exp-question">"드라이버의 피로도를 어떻게 해야 최소화할 수 있을까?"</div>
+        <ul class="exp-bullets">
+          <li><span class="bullet-dot">+</span>셔클(Shucle) 드라이버 앱 PO — 세종 지역 서비스 런칭</li>
+          <li><span class="bullet-dot">+</span>차량 내 노출 현황판 기획</li>
+          <li><span class="bullet-dot">+</span>AI 기술 활용 착석 자동 인식 프로그램 기획</li>
+        </ul>
+        <div class="exp-tags">
+          <span class="tag">모빌리티</span>
+          <span class="tag">드라이버앱</span>
+          <span class="tag">AI</span>
+        </div>
+      </div>
+
+      <!-- LINE -->
+      <div class="exp-card">
+        <div class="exp-top">
+          <div>
+            <div class="exp-company">LINE Financial +</div>
+            <div class="exp-role">라인뱅크</div>
+          </div>
+          <div class="exp-period">2019.01 — 2020.05</div>
+        </div>
+        <div class="exp-question">"인도네시아 사람들에게 딱 맞게 서비스를 제공할 수 있을까?"</div>
+        <ul class="exp-bullets">
+          <li><span class="bullet-dot">+</span>인도네시아 라인 뱅크 사업팀 현지화 서비스 기획 및 프로덕트 관리</li>
+          <li><span class="bullet-dot">+</span>공통롤 적용·인도네시아 특화 상품 기획 대응</li>
+        </ul>
+        <div class="exp-tags">
+          <span class="tag">핀테크</span>
+          <span class="tag">글로벌</span>
+          <span class="tag">현지화</span>
+        </div>
+      </div>
+
+      <!-- NAVER LABS -->
+      <div class="exp-card">
+        <div class="exp-top">
+          <div>
+            <div class="exp-company">NAVER LABS</div>
+            <div class="exp-role">로봇 · 3D지도</div>
+          </div>
+          <div class="exp-period">2018.01 — 2018.12</div>
+        </div>
+        <div class="exp-question">"지금 가진 기술만으로 어떻게 해야 쓸모를 느끼는 기획을 제안할 수 있을까?"</div>
+        <ul class="exp-bullets">
+          <li><span class="bullet-dot">+</span>AROUND G 자율주행 안내 로봇 — CES 2019 데모 PM</li>
+          <li><span class="bullet-dot">+</span>3D 지도 위에 일상 기록을 3D 아이콘으로 등록하는 서비스 PO</li>
+        </ul>
+        <div class="exp-tags">
+          <span class="tag">로봇</span>
+          <span class="tag">3D 매핑</span>
+          <span class="tag">CES</span>
+        </div>
+      </div>
+
+      <!-- NAVER 초기 -->
+      <div class="exp-card">
+        <div class="exp-top">
+          <div>
+            <div class="exp-company">NAVER</div>
+            <div class="exp-role">네이버 블로그 · 웨일</div>
+          </div>
+          <div class="exp-period">2014.09 — 2017.11</div>
+        </div>
+        <div class="exp-question">"정보를 재밌게 생산하고 소비할 수 없을까?"</div>
+        <ul class="exp-bullets">
+          <li><span class="bullet-dot">+</span>웨일 브라우저 브랜드명 직접 제안 및 초기 브랜딩 주도</li>
+          <li><span class="bullet-dot">+</span>웨일 오픈 초기 참여 — 검색창·북마크·스크랩·새탭 등 핵심 기능 기획</li>
+          <li><span class="bullet-dot">+</span>웨일 트위터 운영 — 트위터 이벤트 진행으로 하루 만에 <strong>다운로드 5만 달성</strong></li>
+          <li><span class="bullet-dot">+</span>블로그씨 운영으로 평균 작성 글 수 15% 상승</li>
+          <li><span class="bullet-dot">+</span>블로그 건강 지표 '피이웃지표' 발견 및 제안 - 블로그 하단 추천 콘텐츠 추출 시 값으로 활용</li>
+        </ul>
+        <div class="exp-tags">
+          <span class="tag">브라우저</span>
+          <span class="tag">블로그</span>
+          <span class="tag">브랜딩</span>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <div class="footer">
+    <span class="footer-text">Updated 2026 · slowfolksong@gmail.com</span>
+    <span class="footer-mark">YS +</span>
+  </div>
+
+</body>
+</html>
